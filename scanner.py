@@ -20,7 +20,9 @@ def get(url):
     r=S.get(url,timeout=15); r.raise_for_status(); return r.json()
 
 def notify(message):
-    r=S.post('https://api.pushover.net/1/messages.json',data={'token':KEY,'user':USER,'title':'Meme coin watchlist alert','message':message,'priority':0},timeout=15)
+    r=S.post('https://api.pushover.net/1/messages.json',data={'token':KEY,'user':USER,'title':'Meme coin watchlist alert','message':message,'priority':0},timeout=
+    if not r.ok:
+        logging.error("Pushover error: %s", r.text)
     r.raise_for_status()
 
 def candidates():
